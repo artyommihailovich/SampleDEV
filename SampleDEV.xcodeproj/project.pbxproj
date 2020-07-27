@@ -14,6 +14,9 @@
 		A4465FB124CD517B00D1DC00 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4465FB024CD517B00D1DC00 /* Constants.swift */; };
 		A4465FB524CD665300D1DC00 /* LottieButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4465FB424CD665300D1DC00 /* LottieButtonView.swift */; };
 		A4465FBB24CD78AA00D1DC00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4465FBA24CD78A900D1DC00 /* Extensions.swift */; };
+		A462710524CE92AA000B8AA0 /* PictureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462710424CE92AA000B8AA0 /* PictureItem.swift */; };
+		A462710724CE9948000B8AA0 /* PictureRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462710624CE9947000B8AA0 /* PictureRow.swift */; };
+		A4818D0024CEB9F000F1DB6F /* PictureListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4818CFF24CEB9F000F1DB6F /* PictureListeners.swift */; };
 		A4BDF35524CBEBF3000745D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDF35424CBEBF3000745D7 /* AppDelegate.swift */; };
 		A4BDF35724CBEBF3000745D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDF35624CBEBF3000745D7 /* SceneDelegate.swift */; };
 		A4BDF35924CBEBF4000745D7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BDF35824CBEBF4000745D7 /* HomeView.swift */; };
@@ -52,6 +55,9 @@
 		A4465FB024CD517B00D1DC00 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A4465FB424CD665300D1DC00 /* LottieButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieButtonView.swift; sourceTree = "<group>"; };
 		A4465FBA24CD78A900D1DC00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A462710424CE92AA000B8AA0 /* PictureItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureItem.swift; sourceTree = "<group>"; };
+		A462710624CE9947000B8AA0 /* PictureRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureRow.swift; sourceTree = "<group>"; };
+		A4818CFF24CEB9F000F1DB6F /* PictureListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureListeners.swift; sourceTree = "<group>"; };
 		A4BDF35124CBEBF3000745D7 /* SampleDEV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleDEV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BDF35424CBEBF3000745D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4BDF35624CBEBF3000745D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +130,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A4818D0124CEB9FA00F1DB6F /* Firebase Listeners */ = {
+			isa = PBXGroup;
+			children = (
+				A4818CFF24CEB9F000F1DB6F /* PictureListeners.swift */,
+			);
+			path = "Firebase Listeners";
+			sourceTree = "<group>";
+		};
 		A4BDF34824CBEBF3000745D7 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +166,9 @@
 				A4BDF35424CBEBF3000745D7 /* AppDelegate.swift */,
 				A4BDF35624CBEBF3000745D7 /* SceneDelegate.swift */,
 				A4BDF35824CBEBF4000745D7 /* HomeView.swift */,
+				A4818D0124CEB9FA00F1DB6F /* Firebase Listeners */,
+				A462710424CE92AA000B8AA0 /* PictureItem.swift */,
+				A462710624CE9947000B8AA0 /* PictureRow.swift */,
 				A4465FBA24CD78A900D1DC00 /* Extensions.swift */,
 				A4BDF35A24CBEBF5000745D7 /* Assets.xcassets */,
 				A4BDF35F24CBEBF5000745D7 /* LaunchScreen.storyboard */,
@@ -390,9 +407,12 @@
 				A4BDF35524CBEBF3000745D7 /* AppDelegate.swift in Sources */,
 				A4465FB524CD665300D1DC00 /* LottieButtonView.swift in Sources */,
 				A4465FBB24CD78AA00D1DC00 /* Extensions.swift in Sources */,
+				A4818D0024CEB9F000F1DB6F /* PictureListeners.swift in Sources */,
 				A4BDF35724CBEBF3000745D7 /* SceneDelegate.swift in Sources */,
 				A4BDF35924CBEBF4000745D7 /* HomeView.swift in Sources */,
 				A414CB0F24CC4C7500713814 /* Picture.swift in Sources */,
+				A462710724CE9948000B8AA0 /* PictureRow.swift in Sources */,
+				A462710524CE92AA000B8AA0 /* PictureItem.swift in Sources */,
 				A4465FB124CD517B00D1DC00 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

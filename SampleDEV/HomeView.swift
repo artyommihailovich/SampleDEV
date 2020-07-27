@@ -13,7 +13,7 @@ struct SlideMenu: View {
     @State var showSlideMenu = false
     var body: some View {
         ZStack {
-            (self.showSlideMenu ? Color.black : Color.offWhite)
+            (self.showSlideMenu ? Color.primary : Color.white)
                 .edgesIgnoringSafeArea(.all)
         
         ZStack(alignment: .topTrailing) {
@@ -27,6 +27,11 @@ struct SlideMenu: View {
 
 struct HomeView: View {
     @Binding var showSlideMenu: Bool
+    var categories: [String: [Picture]] {
+//        This one for grouping picture data from category
+        .init(grouping:pictureData,
+              by: {$0.category.rawValue})
+    }
     
     var body: some View {
         VStack(spacing: 0){
@@ -42,12 +47,11 @@ struct HomeView: View {
                     
                 Spacer()
                     
-                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                Button(action: {}) {
                     Image("ShopingBagEmpty")
                     .resizable()
                     .foregroundColor(Color.black)
-                        .frame(width: 19, height: 19, alignment: .center)
+                    .frame(width: 19, height: 19, alignment: .center)
                     }
                     
                 }
@@ -59,8 +63,14 @@ struct HomeView: View {
             .padding(.vertical)
             
             Spacer()
+            
+            List(categories.keys.sorted(), id: \String.self) {
+                key in
+                PictureRow(categoryName: "\(key)".uppercased(), pictures: self.categories[key]!)
+                    .padding(.vertical)
+            }
         }
-        .background(Color.offWhite)
+        .background(Color.white)
         .cornerRadius(7)
     }
 }
