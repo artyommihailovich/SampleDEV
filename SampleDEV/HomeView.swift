@@ -27,10 +27,14 @@ struct SlideMenu: View {
 
 struct HomeView: View {
     @Binding var showSlideMenu: Bool
+    
+    @ObservedObject var pictureListener = PictureListener()
+ 
     var categories: [String: [Picture]] {
-//        This one for grouping picture data from category
-        .init(grouping:pictureData,
-              by: {$0.category.rawValue})
+        .init(
+            grouping: pictureListener.pictures,
+            by: {$0.category.rawValue
+        })
     }
     
     var body: some View {
