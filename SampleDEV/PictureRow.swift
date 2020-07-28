@@ -20,8 +20,7 @@ struct PictureRow: View {
                     picture in 
                     PictureItem(picture: picture)
                         .frame(width: 350)
-                        .padding(.vertical, 30)
-                    
+//                        .padding(.bottom, 30)                   
                 }
             }
         }

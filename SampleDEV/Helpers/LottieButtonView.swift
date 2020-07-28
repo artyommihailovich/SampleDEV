@@ -12,23 +12,26 @@ import Lottie
 struct LottieButton: UIViewRepresentable {
     
     typealias UIViewType = UIView
-    let animationView = AnimatedButton()
+    let animationView = AnimatedSwitch()
     let filename: String
     let action: () -> Void
-    //    var onState: Bool
-    
+
     func makeUIView(context: UIViewRepresentableContext<LottieButton>) -> UIView {
         let view = UIView()
         
         let animation = Animation.named(filename)
         animationView.animation = animation
         animationView.contentMode = .scaleAspectFill
-        animationView.animationSpeed =  0.7
+        animationView.animationSpeed =  2
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
+
         
+        animationView.isOn = false
+        animationView.setProgressForState(fromProgress: 0, toProgress: 0.35, forOnState: true)
+        animationView.setProgressForState(fromProgress: 0.35, toProgress: 0, forOnState: false)
+                
         
-        animationView.setPlayRange(fromProgress: 0, toProgress: 1, event: .touchUpInside)
         NSLayoutConstraint.activate([
             animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
             animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
@@ -63,7 +66,7 @@ struct LottieButton: UIViewRepresentable {
 
 struct SwitchAnimationLottie_Previews: PreviewProvider {
     static var previews: some View {
-        LottieButton(filename: "ShoppingCart", action: {
+        LottieButton(filename: "BurgerMenu", action: {
         })
     }
 }

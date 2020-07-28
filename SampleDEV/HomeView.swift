@@ -9,24 +9,12 @@
 import SwiftUI
 import Lottie
 
-struct SlideMenu: View {
-    @State var showSlideMenu = false
-    var body: some View {
-        ZStack {
-            (self.showSlideMenu ? Color.primary : Color.white)
-                .edgesIgnoringSafeArea(.all)
-        
-        ZStack(alignment: .topTrailing) {
-                           HomeView(showSlideMenu: self.$showSlideMenu)
-                               .scaleEffect(self.showSlideMenu ? 0.8 : 1)
-                               .offset(x: self.showSlideMenu ? (UIScreen.main.bounds.width - 100) : 0)
-            }
-        }
-    }
-}
 
 struct HomeView: View {
+    
     @Binding var showSlideMenu: Bool
+//    Thats for looking how it will in menu
+    @Binding var index : String
     
     @ObservedObject var pictureListener = PictureListener()
  
@@ -51,6 +39,11 @@ struct HomeView: View {
                     
                 Spacer()
                     
+                    Text("SAMPLE")
+                            .font(.title)
+                            .bold()
+                    
+                Spacer()
                 Button(action: {}) {
                     Image("ShopingBagEmpty")
                     .resizable()
@@ -59,19 +52,15 @@ struct HomeView: View {
                     }
                     
                 }
-                Text("SAMPLE")
-                  .font(.title)
-                  .bold()
             }
-            .padding(.horizontal)
-            .padding(.vertical)
-            
-            Spacer()
+            .padding()
+           
+            NewsRollItem()
             
             List(categories.keys.sorted(), id: \String.self) {
                 key in
                 PictureRow(categoryName: "\(key)".uppercased(), pictures: self.categories[key]!)
-                    .padding(.vertical)
+                    .padding(.top)
             }
         }
         .background(Color.white)

@@ -56,5 +56,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AsketNarrow-Light.ttf</string>
+		<string>AsketExtended-Light.ttf</string>
+	</array>
 </dict>
 </plist>
