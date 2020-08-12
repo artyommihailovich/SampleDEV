@@ -9,18 +9,26 @@
 import SwiftUI
 
 struct PictureRow: View {
+    
     var categoryName: String
     var pictures: [Picture]
     
     var body: some View {
-        VStack {
-//            Text(self.categoryName)
-            ScrollView(.vertical, showsIndicators: false) {
-                ForEach(self.pictures) {
-                    picture in 
-                    PictureItem(picture: picture)
-                        .frame(width: 350)
-//                        .padding(.bottom, 30)                   
+        
+        VStack(alignment: .center) {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        
+                        VStack {
+                            ForEach(self.pictures) { picture in
+                            
+                            NavigationLink(destination: PictureDetail(picture: picture)) {
+                                
+                                PictureItem(picture: picture)
+                                .frame(width: 350)
+                                .padding(.vertical)
+                            }
+                            .foregroundColor(.black)
+                    }
                 }
             }
         }

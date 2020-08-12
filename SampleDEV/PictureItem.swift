@@ -9,7 +9,9 @@
 import SwiftUI
 
 struct PictureItem: View {
+    
     var picture: Picture
+    
 //    Maybee change  it after?  Converted price in String??
     var convertedPicturePrice: String {
         let convertedValueRaw: Double = picture.price

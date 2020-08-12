@@ -7,17 +7,12 @@
 //
 
 import SwiftUI
-import Lottie
 
 
 struct HomeView: View {
-    
-    @Binding var showSlideMenu: Bool
-//    Thats for looking how it will in menu
-    @Binding var index : String
-    
     @ObservedObject var pictureListener = PictureListener()
- 
+    @State private var showingBasket = true
+    
     var categories: [String: [Picture]] {
         .init(
             grouping: pictureListener.pictures,
@@ -26,50 +21,53 @@ struct HomeView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0){
-            ZStack {
-                HStack(alignment: .center) {
-                LottieButton(filename: "BurgerMenu", action: {
-                        withAnimation(.spring()) {
-                            
-                            self.showSlideMenu.toggle()
-                        }
-                    })
-                      .frame(width: 40, height: 40, alignment: .center)
-                    
-                Spacer()
-                    
-                    Text("SAMPLE")
-                            .font(.title)
-                            .bold()
-                    
-                Spacer()
-                Button(action: {}) {
-                    Image("ShopingBagEmpty")
-                    .resizable()
-                    .foregroundColor(Color.black)
-                    .frame(width: 19, height: 19, alignment: .center)
-                    }
-                    
-                }
-            }
-            .padding()
-           
-            NewsRollItem()
+
+        NavigationView {
+            
             
             List(categories.keys.sorted(), id: \String.self) {
-                key in
-                PictureRow(categoryName: "\(key)".uppercased(), pictures: self.categories[key]!)
-                    .padding(.top)
+                         key in
+                         PictureRow(categoryName: "\(key)".uppercased(), pictures: self.categories[key]!)
+                             .padding(.top)
+                             .padding(.bottom)
             }
+
+            .navigationBarTitle("SAMPLE")
+            .navigationBarItems(leading:
+                Button(action: {
+            FUser.logOutCurrenUser { (error) in
+                print("error loging out user, ", error?.localizedDescription)
+            }
+        }, label: {
+            Text("Выход")
+                .foregroundColor(.black)
+        })
+        , trailing:
+                Button(action: {
+            self.showingBasket.toggle()
+        }, label: {
+            Image(systemName: "bag")
+                .font(.system(size: 16, weight: .regular))
+                .foregroundColor(.black)
+        })
+            .sheet(isPresented: $showingBasket) {
+
+                if FUser.currentUser() != nil && FUser.currentUser()!.onBoarding {
+                    
+                    OrderBasketView()
+                } else if FUser.currentUser() != nil {
+                    FinishRegistrationView()
+                } else {
+                    LoginView()
+                }
+            })
         }
-        .background(Color.white)
-        .cornerRadius(7)
     }
 }
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SlideMenu()
+        HomeView()
     }
 }
