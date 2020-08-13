@@ -8,14 +8,26 @@
 
 import SwiftUI
 
-struct NewsRow: View {
+struct NewsRollRow: View {
+    
+    var news: [News]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 0) {
+                ForEach(self.news) {
+                   news in NewsRollItem(news: news)
+                    
+                }
+            }
+        }
     }
 }
 
-struct NewsRow_Previews: PreviewProvider {
+
+
+struct NewsRollRow_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRow()
+        NewsRollRow(news: newsData)
     }
 }

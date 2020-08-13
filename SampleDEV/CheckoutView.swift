@@ -13,7 +13,7 @@ struct CheckoutView: View {
     @ObservedObject var basketListener = BasketListener()
     
     static let paymentTypes = ["Наличными курьеру", "Кредитная карта"]
-    static let tipAmounts = [500, 250, 100, 0]
+    static let tipAmounts = [250, 50, 100, 0]
     
     @State private var paymentType = 0
     @State private var tipAmount = 1

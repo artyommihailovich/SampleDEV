@@ -91,7 +91,7 @@ struct LoginView: View {
                     .padding()
             }) //End of Button
             .foregroundColor(Color.black)
-            .frame(width: 350, height: 30)
+            .frame(width: 300, height: 30)
             .background(Rectangle()
             .stroke(lineWidth: 1)
             .foregroundColor(Color.black))
@@ -201,11 +201,11 @@ struct SignUpView : View {
             
             Spacer()
             
-            HStack(spacing: 8) {
+            HStack(spacing: 4) {
                 
                 Text("Еще не зарегистрировались?")
                     .foregroundColor(Color.gray)
-                
+                    .font(.system(size: 15))
                 Button(action: {
                     
                     self.showingSignup.toggle()
@@ -213,9 +213,9 @@ struct SignUpView : View {
                     Text("Регистрация")
                 })
                     .foregroundColor(.black)
-                
+                    .font(.system(size: 15))
             }//End of HStack
-                .padding(10)
+             .padding(.bottom, 10)
             
         } //End of VStack
     }

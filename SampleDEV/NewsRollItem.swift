@@ -9,19 +9,28 @@
 import SwiftUI
 
 struct NewsRollItem: View {
+    
+    var news: News
+    
     var body: some View {
  
             ZStack(alignment: .leading) {
-                Image("CoverRihter")
+                Image(news.nameOfNewImage)
                 .resizable()
                 .renderingMode(.original)
                 .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width, height: 220)
-                .foregroundColor(Color.black.opacity(0.9))
+                .frame(width: UIScreen.main.bounds.width, height: 200)
+                .background(Color.black)
+                .opacity(0.7)
+
                 
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    Text("РИХТЕР x SAMPLE онлайн аукцион")
+                    Text(news.descriptionOfNew)
+                        .bold()
+                        .foregroundColor(Color.white)
+                    
+                    Text(news.nameOfNew)
                         .font(.custom("AsketExtended-Light", size:  20))
                         .foregroundColor(Color.white)
                     
@@ -33,7 +42,7 @@ struct NewsRollItem: View {
                         .background(Rectangle()
                         .stroke(lineWidth: 1)
                         .foregroundColor(Color.white))
-                        .padding(.top, 30)
+                        .padding(.top, 5)
                     }
                 }
                 .padding(.horizontal)
@@ -44,6 +53,6 @@ struct NewsRollItem: View {
 
 struct NewsRollItem_Previews: PreviewProvider {
     static var previews: some View {
-        NewsRollItem()
+        NewsRollItem(news: newsData[0])
     }
 }

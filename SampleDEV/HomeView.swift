@@ -11,7 +11,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var pictureListener = PictureListener()
-    @State private var showingBasket = true
+    @State private var showingBasket = false
     
     var categories: [String: [Picture]] {
         .init(
@@ -24,14 +24,14 @@ struct HomeView: View {
 
         NavigationView {
             
-            
-            List(categories.keys.sorted(), id: \String.self) {
-                         key in
-                         PictureRow(categoryName: "\(key)".uppercased(), pictures: self.categories[key]!)
-                             .padding(.top)
-                             .padding(.bottom)
+            ScrollView(.vertical, showsIndicators: false){
+                Group {
+                        
+                    PictureRow(pictures: pictureData, categoryName: "photography")
+                }
             }
-
+           
+  
             .navigationBarTitle("SAMPLE")
             .navigationBarItems(leading:
                 Button(action: {
@@ -40,6 +40,7 @@ struct HomeView: View {
             }
         }, label: {
             Text("Выход")
+                .font(.system(size: 16, weight: .regular))
                 .foregroundColor(.black)
         })
         , trailing:

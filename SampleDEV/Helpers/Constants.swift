@@ -39,3 +39,8 @@ public let kCURRENTUSER = "currentUser"
 public let kFULLADDRESS = "fullAddress"
 public let kPHONENUMBER = "phoneNumber"
 public let kONBOARD = "onBoard"
+
+//News
+public let kNEWSID = "id"
+public let kDESCRIPTIONOFNEW = "descriptionOfNew"
+public let kNAMEOFNEWIMAGE = "nameOfNewImage"

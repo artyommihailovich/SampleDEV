@@ -11,9 +11,12 @@ import SwiftUI
 struct PictureDetail: View {
     @State private var showingAlert = false
     @State private var showingLogin = false
+    @State private var likeButtonTapped = false
     
     var picture: Picture
     
+    @Environment(\.presentationMode) var presentationMode
+   
     var convertedPicturePrice: String {
            let convertedValueRaw: Double = picture.price
            let convertedValueString = String("\(convertedValueRaw)00₽")
@@ -26,6 +29,7 @@ struct PictureDetail: View {
            return convertedValueString
        }
 
+//MARK: StartOfBody!
     
     var body: some View {
         
@@ -58,11 +62,11 @@ struct PictureDetail: View {
                     
                     Spacer()
                     
-                    Text(picture.country)
+                    Text("\(picture.country).")
                     .font(.subheadline)
                     .fontWeight(.light)
                 }//Country
-                .padding(.horizontal)
+                .padding(.horizontal, 25)
                 
                 HStack {
                     Text("Размер:")
@@ -75,7 +79,7 @@ struct PictureDetail: View {
                     .font(.subheadline)
                     .fontWeight(.light)
                 }//Size
-                .padding(.horizontal)
+                .padding(.horizontal, 25)
                 
                 HStack {
                     Text("Год:")
@@ -88,29 +92,48 @@ struct PictureDetail: View {
                     .font(.subheadline)
                     .fontWeight(.light)
                 }//Year
-                .padding(.horizontal)
+                .padding(.horizontal, 25)
                 .padding(.bottom)
                 
                 HStack(spacing: 2){
-                           Button(action: {}) {
-                               Image(systemName: "heart")
-                                   .font(.system(size: 12, weight: .regular))
-                                   .foregroundColor(.black)
+                           Button(action: {
+                            self.likeButtonTapped.toggle()
+                           }) {
+                            if likeButtonTapped {
+                                Image(systemName: "suit.heart.fill")
+                                       .font(.system(size: 12, weight: .regular))
+                                       .foregroundColor(.red)
+                            } else {
+                                Image(systemName: "heart")
+                                       .font(.system(size: 12, weight: .regular))
+                                       .foregroundColor(.black)
+                            }
                     }
 
                     Text(" · Подробная информация о доставке · ")
-                                                  .font(.system(size: 12, weight: .regular))
+                                                  .font(.system(size: 13, weight: .light))
                 }// HeartAndDelivery
             }
             
-            HStack{
+            HStack {
                 Spacer()
                 OrderButton(showAlert: $showingAlert, showLogin: $showingLogin, picture: picture)
                 Spacer()
             }
             .padding(.vertical)
         }
-        .navigationBarHidden(false)
+        .navigationBarBackButtonHidden(true)
+                .navigationBarItems(leading:
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                        Image(systemName: "arrow.left")
+                        Text("в Sample")
+                        }
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundColor(.black)
+                })
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Добавлено в корзину!"), dismissButton: .default(Text("OK")))
         }
@@ -137,10 +160,9 @@ struct OrderButton : View {
         Button(action: {
             
             if FUser.currentUser() != nil && FUser.currentUser()!.onBoarding {
-
+               
                 self.showAlert.toggle()
                 self.addItemToBasket()
-
             } else  {
                 self.showLogin.toggle()
             }
@@ -150,7 +172,7 @@ struct OrderButton : View {
             Text("ДОБАВИТЬ В КОРЗИНУ")
         }
         .foregroundColor(Color.black)
-        .frame(width: 350, height: 30)
+        .frame(width: 300, height: 30)
         .background(Rectangle()
         .stroke(lineWidth: 1)
         .foregroundColor(Color.black))
@@ -181,3 +203,4 @@ struct OrderButton : View {
         orderBasket.saveBasketToFirestore()
     }
 }
+
